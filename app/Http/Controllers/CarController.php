@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 class CarController extends Controller
 {
     
+    public function index(){
+        $cars = Car::orderBy("created_at", "desc")->with(["type", "brand", "owner"])->get();
+        return response()->json($cars);
+    }
+    
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

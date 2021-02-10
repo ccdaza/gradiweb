@@ -14,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
+Route::get("/cars", "CarController@index");
 Route::post("/cars", "CarController@store");
+
+Route::get("/brands", "BrandController@index");
+
+Route::get("/types", "TypesController@index");
+
+Route::get("/owners", "OwnerController@index");

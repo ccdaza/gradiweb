@@ -109,6 +109,17 @@ class CarTest extends TestCase
         $response->assertStatus(200);
     }
     
+    /**
+     * Probando json listado de vehiculos
+     */
+    
+    public function testListCars(){
+        $cars = Car::orderBy("created_at", "desc")->with("type", "brand", "owner")->get();
+        $response = $this->json("GET", "/cars");
+        $response->assertJsonFragment($cars->first()->toArray());
+        $response->assertStatus(200);
+    }
+    
     
     
 }
